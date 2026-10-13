@@ -1,0 +1,23 @@
+{
+  "name": "heim",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CseriDC/Heim.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CseriDC/Heim/issues"
+  },
+  "homepage": "https://github.com/CseriDC/Heim#readme",
+  "devDependencies": {
+    "rea-agents": "^6.4.0"
+  }
+}
