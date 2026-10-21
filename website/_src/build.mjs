@@ -27,7 +27,9 @@ function pic(key, i = 0, { alt = "", eager = false, sizes = "100vw" } = {}) {
   const m = media[key] && media[key][i];
   if (!m) return "";
   const fallback = m.alpha ? `${m.src}.png` : `${m.src}.jpg`;
-  return `<picture><source type="image/webp" srcset="${m.src}.webp"><img src="${fallback}" alt="${esc(alt)}" width="${m.w}" height="${m.h}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async" sizes="${sizes}"></picture>`;
+  const webp = m.sm ? `${m.src}-sm.webp ${m.sm}w, ${m.src}.webp ${m.w}w` : `${m.src}.webp`;
+  const jpg = m.sm && !m.alpha ? ` srcset="${m.src}-sm.jpg ${m.sm}w, ${m.src}.jpg ${m.w}w"` : "";
+  return `<picture><source type="image/webp" srcset="${webp}" sizes="${sizes}"><img src="${fallback}"${jpg} alt="${esc(alt)}" width="${m.w}" height="${m.h}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async" sizes="${sizes}"></picture>`;
 }
 
 // ---------- Icons ----------
@@ -120,6 +122,7 @@ const orgLd = {
 function page({ file, title, description, section = "", body, ld = [], image = "assets/brand/heim-og.jpg" }) {
   const full = title ? `${title} | HEIM Infrastrukturbau` : "HEIM Infrastrukturbau | Bauunternehmen in Göppingen";
   const canonical = C.baseUrl + (file === "index.html" ? "" : file);
+  if (description.length > 158) description = description.slice(0, 155).replace(/\s+\S*$/, "").replace(/[,.:;–-]+$/, "") + " …";
   return `<!doctype html>
 <html lang="de">
 <head>
@@ -141,7 +144,7 @@ function page({ file, title, description, section = "", body, ld = [], image = "
 <link rel="icon" href="assets/brand/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/site.css">
+${file === "index.html" ? '<link rel="preload" href="assets/video/heim-baustelle-poster.jpg" as="image" fetchpriority="high">\n' : ""}<link rel="stylesheet" href="assets/css/site.css">
 ${[orgLd, ...ld].map((o) => `<script type="application/ld+json">${JSON.stringify(o)}</script>`).join("\n")}
 </head>
 <body>
@@ -207,6 +210,7 @@ const pages = {};
     <div class="hero-side rise-2">
       <p class="lead">Straßen, Netze, Lärmschutz und Gebäude aus einer Hand. Von Göppingen und Baindt aus für Kommunen, Versorger, Handel und Gewerbe.</p>
       <div class="btn-row"><a class="btn" href="leistungen.html">Leistungen ansehen ${I.arrow}</a><a class="btn btn--line" href="projekte.html">Projekte</a></div>
+      <ul class="trust" aria-label="Qualitätsnachweise"><li>RAL-Gütezeichen 962/2</li><li>Betoninstandsetzung nach SIVV</li><li>Fachbetrieb nach § 19 WHG</li><li>Mitglied der WIN-Charta</li></ul>
     </div>
   </div>
   <div class="hero-film">
@@ -235,15 +239,15 @@ const pages = {};
 
 <section class="section section--mist">
   <div class="wrap">
-    <div class="head"><h2 class="h-1">Sechs Geschäftsbereiche. Ein Partner.</h2><p class="lead">Wir verbinden Tiefbau, Netzbau, Hochbau und Lärmschutz zu Leistungen, die ineinandergreifen. Mit eigenen Kolonnen und einem festen Ansprechpartner über die gesamte Bauzeit.</p></div>
-    <ul class="svc-index">${services.map(svcRow).join("")}</ul>
+    <div class="head" data-reveal><h2 class="h-1">Sechs Geschäftsbereiche. Ein Partner.</h2><p class="lead">Wir verbinden Tiefbau, Netzbau, Hochbau und Lärmschutz zu Leistungen, die ineinandergreifen. Mit eigenen Kolonnen und einem festen Ansprechpartner über die gesamte Bauzeit.</p></div>
+    <ul class="svc-index" data-stagger>${services.map(svcRow).join("")}</ul>
   </div>
 </section>
 
 <section class="section">
   <div class="wrap">
-    <div class="head"><h2 class="h-1">Projekte, die bleiben.</h2><p class="lead">Vom historischen Stadtplatz bis zur Lärmschutzwand an der A8: ${projects.length} Referenzen aus allen Geschäftsbereichen.</p></div>
-    <div class="bento">
+    <div class="head" data-reveal><h2 class="h-1">Projekte, die bleiben.</h2><p class="lead">Vom historischen Stadtplatz bis zur Lärmschutzwand an der A8: ${projects.length} Referenzen aus allen Geschäftsbereichen.</p></div>
+    <div class="bento" data-stagger>
       ${tile(projBy["schlossplatz-goeppingen"], "tile--a")}
       ${tile(projBy["laermschutz-a8-muehlhausen"], "tile--b")}
       ${tile(projBy["kfc-goeppingen"], "tile--c")}
@@ -290,7 +294,7 @@ const pages = {};
 
 <section class="section">
   <div class="wrap">
-    <div class="head"><h2 class="h-1">Zwei Standorte. Kurze Wege.</h2><p class="lead">Die Zentrale in Göppingen-Voralb ist für die Region Stuttgart, das Filstal und die Alb da. Die Niederlassung Süd in Baindt für Oberschwaben, das Allgäu und den Bodensee.</p></div>
+    <div class="head" data-reveal><h2 class="h-1">Zwei Standorte. Kurze Wege.</h2><p class="lead">Die Zentrale in Göppingen-Voralb ist für die Region Stuttgart, das Filstal und die Alb da. Die Niederlassung Süd in Baindt für Oberschwaben, das Allgäu und den Bodensee.</p></div>
     <div class="locs">
       <div class="loc"><div class="media">${pic("c/geraetefamilie", 0, { alt: "HEIM-Gerätefamilie im Einsatz", sizes: "(max-width: 760px) 100vw, 50vw" })}</div><h3>${C.hq.label}</h3><address>${C.name}<br>${C.hq.street}, ${C.hq.zip} ${C.hq.city}</address></div>
       <div class="loc"><div class="media">${pic(south.media, 1, { alt: "Büro der Niederlassung Süd in Baindt", sizes: "(max-width: 760px) 100vw, 50vw" })}</div><h3>${C.south.label}</h3><address>${C.name}<br>${C.south.street}, ${C.south.zip} ${C.south.city}</address></div>
@@ -311,7 +315,7 @@ pages["leistungen.html"] = page({
   body: `${phero({ trail: [[null, "Leistungen"]], title: "Infrastruktur aus einer Hand.", lead: "Sechs Geschäftsbereiche, eigene Kolonnen, eigene Geräte und eigene Planung. Dazu die Niederlassung Süd und unser Partnerunternehmen HUS Umwelttechnik + Service.", mediaKey: "c/geraetefamilie", alt: "Die HEIM-Gerätefamilie" })}
 <section class="section">
   <div class="wrap">
-    <ul class="svc-index">${services.map(svcRow).join("")}
+    <ul class="svc-index" data-stagger>${services.map(svcRow).join("")}
       <li class="svc-row"><a href="niederlassung-sued.html"><h3>Niederlassung Süd</h3><p>Schlüsselfertigbau, Rohbau und Ausbaugewerke für Oberschwaben, das Allgäu und den Bodensee.</p><div class="svc-thumb">${pic(south.media, 0, { alt: "Team der Niederlassung Süd", sizes: "200px" })}</div>${go}</a></li>
       <li class="svc-row"><a href="unternehmen.html#hus"><h3>Baudienstleistungen</h3><p>Sanierung, Service, Winterdienst, Prüfungen und Logistik über HUS Umwelttechnik + Service.</p><div class="svc-thumb">${pic("s/baudienstleistungen", 0, { alt: "Baudienstleistungen", sizes: "200px" })}</div>${go}</a></li>
     </ul>
@@ -342,10 +346,10 @@ function servicePage(s) {
     </aside>
   </div>
 </section>
-${s.materials ? `<section class="section section--mist"><div class="wrap"><div class="head"><h2 class="h-2">Ausführung in Beton, Aluminium, Glas oder Holz.</h2><p class="lead">Einseitig oder beidseitig absorbierend, hochabsorbierend oder reflektierend. Material- und Farbkombinationen nach Ihren Vorgaben.</p></div>${gallery(s.media, 1, "Lärmschutzwand von HEIM")}</div></section>${lightbox()}` : ""}
-${s.key === "markierung" ? `<section class="section section--mist"><div class="wrap"><div class="head"><h2 class="h-2">Aus unserer Arbeit</h2></div>${gallery(s.media, 1, "Markierungsarbeiten von HEIM")}</div></section>${lightbox()}` : ""}
-${rel.length ? `<section class="section${s.materials ? "" : " section--mist"}"><div class="wrap"><div class="head"><h2 class="h-2">Referenzen aus diesem Bereich</h2><a class="link" href="projekte.html#${s.key}" style="justify-self:end">Alle Projekte ${I.arrow}</a></div><div class="pgrid">${rel.map(pcard).join("")}</div></div></section>` : ""}
-<section class="section section--tight"><div class="wrap"><div class="head"><h2 class="h-2">Weitere Geschäftsbereiche</h2></div><ul class="svc-index">${services.filter((o) => o !== s).map(svcRow).join("")}</ul></div></section>
+${s.materials ? `<section class="section section--mist"><div class="wrap"><div class="head" data-reveal><h2 class="h-2">Ausführung in Beton, Aluminium, Glas oder Holz.</h2><p class="lead">Einseitig oder beidseitig absorbierend, hochabsorbierend oder reflektierend. Material- und Farbkombinationen nach Ihren Vorgaben.</p></div>${gallery(s.media, 1, "Lärmschutzwand von HEIM")}</div></section>${lightbox()}` : ""}
+${s.key === "markierung" ? `<section class="section section--mist"><div class="wrap"><div class="head" data-reveal><h2 class="h-2">Aus unserer Arbeit</h2></div>${gallery(s.media, 1, "Markierungsarbeiten von HEIM")}</div></section>${lightbox()}` : ""}
+${rel.length ? `<section class="section${s.materials ? "" : " section--mist"}"><div class="wrap"><div class="head" data-reveal><h2 class="h-2">Referenzen aus diesem Bereich</h2><a class="link" href="projekte.html#${s.key}" style="justify-self:end">Alle Projekte ${I.arrow}</a></div><div class="pgrid" data-stagger>${rel.map(pcard).join("")}</div></div></section>` : ""}
+<section class="section section--tight"><div class="wrap"><div class="head" data-reveal><h2 class="h-2">Weitere Geschäftsbereiche</h2></div><ul class="svc-index" data-stagger>${services.filter((o) => o !== s).map(svcRow).join("")}</ul></div></section>
 ${cta()}`;
   return page({ file: svcUrl(s), title: s.name, section: "leistungen", description: `${s.name} von HEIM Infrastrukturbau: ${s.short}`, body, image: `${media[s.media][0].src}.jpg` });
 }
@@ -359,7 +363,7 @@ pages["niederlassung-sued.html"] = page({
   <div class="stack" style="gap:16px"><h2 class="h-2">Unsere Leistungen aus einer Hand</h2>${scope(south.scope)}</div>
   <aside class="panel"><h3>Niederlassung Süd</h3><address style="font-style:normal">${C.name}<br>${C.south.street}<br>${C.south.zip} ${C.south.city}</address><div class="kv"><small>Telefon</small><a href="tel:${C.phoneIntl}" style="font-size:1.4rem">${C.phone}</a></div><p class="muted" style="font-size:var(--fs-s)">Seit 2021 vor Ort, seit 2022 im eigenen Büro in Baindt.</p></aside>
 </div></section>
-<section class="section section--mist"><div class="wrap"><div class="head"><h2 class="h-2">Projekte der Niederlassung Süd</h2></div><div class="pgrid">${south.projects.map((k) => pcard(projBy[k])).join("")}</div></div></section>
+<section class="section section--mist"><div class="wrap"><div class="head" data-reveal><h2 class="h-2">Projekte der Niederlassung Süd</h2></div><div class="pgrid" data-stagger>${south.projects.map((k) => pcard(projBy[k])).join("")}</div></div></section>
 ${cta()}`,
 });
 
@@ -374,7 +378,7 @@ pages["projekte.html"] = page({
       <button class="chip" type="button" data-filter="alle" aria-pressed="true">Alle<span class="c">${projects.length}</span></button>
       ${services.filter((s) => projects.some((p) => p.service === s.key)).map((s) => `<button class="chip" type="button" data-filter="${s.key}" aria-pressed="false">${s.name}<span class="c">${projects.filter((p) => p.service === s.key).length}</span></button>`).join("")}
     </div>
-    <div class="pgrid" id="plist">${projects.map(pcard).join("")}</div>
+    <div class="pgrid" id="plist" data-stagger>${projects.map(pcard).join("")}</div>
     <p class="empty" id="pempty" hidden>Keine Projekte in dieser Auswahl.</p>
   </div>
 </section>
@@ -398,7 +402,7 @@ projects.forEach((p, idx) => {
     <aside class="stack"><div class="callout"><small>Besonderheit</small><p>${p.special}</p></div><a class="link" href="${svcUrl(s)}">Mehr zu ${s.name} ${I.arrow}</a></aside>
   </div>
 </section>
-${hasGallery ? `<section class="section section--mist"><div class="wrap"><div class="head"><h2 class="h-2">Projektgalerie</h2></div>${gallery(p.media, 1, pTitle(p))}</div></section>${lightbox()}` : ""}
+${hasGallery ? `<section class="section section--mist"><div class="wrap"><div class="head" data-reveal><h2 class="h-2">Projektgalerie</h2></div>${gallery(p.media, 1, pTitle(p))}</div></section>${lightbox()}` : ""}
 <section class="section section--tight"><div class="wrap"><nav class="pager" aria-label="Weitere Projekte"><a href="${projUrl(prev)}"><small>Vorheriges Projekt</small><b>${pTitle(prev)}</b></a><a href="${projUrl(next)}"><small>Nächstes Projekt</small><b>${pTitle(next)}</b></a></nav></div></section>
 ${cta()}`,
   });
@@ -430,19 +434,19 @@ pages["unternehmen.html"] = page({
 <section class="section section--mist" id="historie">
   <div class="wrap split split--rev">
     <div class="stack"><h2 class="h-1">Historie</h2><p class="muted">Die wichtigsten Stationen seit Anfang des 20. Jahrhunderts.</p></div>
-    <ol class="timeline">${K.timeline.map(([y, t]) => `<li><span class="yr">${y}</span><p>${t}</p></li>`).join("")}</ol>
+    <ol class="timeline" data-stagger>${K.timeline.map(([y, t]) => `<li><span class="yr">${y}</span><p>${t}</p></li>`).join("")}</ol>
   </div>
 </section>
 <section class="section" id="leitbild">
   <div class="wrap">
-    <div class="head"><h2 class="slogan">Mit Liebe <em>ans Werk.</em></h2><p class="lead">Beim HEIM fühlt sich jeder wahrgenommen, ernst genommen und wertgeschätzt. Unser Leitbild gibt uns Orientierung für unser Handeln und Urteilen. Es stützt sich auf die Liebe …</p></div>
-    <ul class="pillars">${K.love.map(([a, b]) => `<li><b>… ${a}</b><span>${b}</span></li>`).join("")}</ul>
+    <div class="head" data-reveal><h2 class="slogan">Mit Liebe <em>ans Werk.</em></h2><p class="lead">Beim HEIM fühlt sich jeder wahrgenommen, ernst genommen und wertgeschätzt. Unser Leitbild gibt uns Orientierung für unser Handeln und Urteilen. Es stützt sich auf die Liebe …</p></div>
+    <ul class="pillars" data-stagger>${K.love.map(([a, b]) => `<li><b>… ${a}</b><span>${b}</span></li>`).join("")}</ul>
   </div>
 </section>
 <section class="section section--mist" id="leitsaetze">
   <div class="wrap">
-    <div class="head"><h2 class="h-1">Unsere 12 Leitsätze.</h2><p class="lead">Nur wenn diese Werte sichtbar und verlässlich gelebt werden, ist unser Unternehmen zukunftsfähig. Sie mit Leben zu füllen, ist uns Anspruch und Antrieb zugleich.</p></div>
-    <ol class="maxims">${K.maxims.map((m) => `<li><p>${m}</p></li>`).join("")}</ol>
+    <div class="head" data-reveal><h2 class="h-1">Unsere 12 Leitsätze.</h2><p class="lead">Nur wenn diese Werte sichtbar und verlässlich gelebt werden, ist unser Unternehmen zukunftsfähig. Sie mit Leben zu füllen, ist uns Anspruch und Antrieb zugleich.</p></div>
+    <ol class="maxims" data-stagger>${K.maxims.map((m) => `<li><p>${m}</p></li>`).join("")}</ol>
   </div>
 </section>
 <section class="section" id="fuehrung">
@@ -503,7 +507,7 @@ pages["karriere.html"] = page({
   body: `${phero({ trail: [[null, "Karriere"]], title: "Werden Sie HEIMWERKER.", lead: "Bauen ist vieles, nur nicht langweilig. Jedes Projekt bringt neue Herausforderungen, und wir suchen ständig Menschen, die sie mit uns angehen.", side: `<div class="btn-row"><a class="btn" href="#stellen">${jobs.length} offene Stellen ${I.arrow}</a><a class="btn btn--line" href="#initiativ">Initiativ bewerben</a></div>`, mediaKey: "c/team-sued", alt: "HEIMWERKER der Niederlassung Süd" })}
 <section class="section" id="stellen">
   <div class="wrap">
-    <div class="head"><h2 class="h-1">Offene Stellen</h2><p class="lead">In Göppingen und in unserer Niederlassung Süd in Baindt. Ein Lebenslauf genügt für den Anfang.</p></div>
+    <div class="head" data-reveal><h2 class="h-1">Offene Stellen</h2><p class="lead">In Göppingen und in unserer Niederlassung Süd in Baindt. Ein Lebenslauf genügt für den Anfang.</p></div>
     <div class="jobtools">
       <div class="chips" role="group" aria-label="Stellen nach Bereich filtern" data-filter-group="#jlist" data-search="#job-q" data-empty="#jempty">
         <button class="chip" type="button" data-filter="alle" aria-pressed="true">Alle<span class="c">${jobs.length}</span></button>
@@ -517,20 +521,20 @@ pages["karriere.html"] = page({
 </section>
 <section class="section section--mist">
   <div class="wrap">
-    <div class="head"><h2 class="h-1">Das WIR gewinnt.</h2><p class="lead">Nur mit Wertschätzung ist Begeisterung möglich. Das bieten wir allen HEIMWERKERN.</p></div>
-    <div class="benefits">${K.benefitGroups.map(([g, items]) => `<div><h3>${g}</h3><ul>${items.map((x) => `<li>${x}</li>`).join("")}</ul></div>`).join("")}</div>
+    <div class="head" data-reveal><h2 class="h-1">Das WIR gewinnt.</h2><p class="lead">Nur mit Wertschätzung ist Begeisterung möglich. Das bieten wir allen HEIMWERKERN.</p></div>
+    <div class="benefits" data-stagger>${K.benefitGroups.map(([g, items]) => `<div><h3>${g}</h3><ul>${items.map((x) => `<li>${x}</li>`).join("")}</ul></div>`).join("")}</div>
   </div>
 </section>
 <section class="section">
   <div class="wrap">
-    <div class="head"><h2 class="h-1">Auf ein Wort.</h2><p class="lead">Unsere Auszubildenden über ihren Alltag bei HEIM.</p></div>
+    <div class="head" data-reveal><h2 class="h-1">Auf ein Wort.</h2><p class="lead">Unsere Auszubildenden über ihren Alltag bei HEIM.</p></div>
     <div class="voices">${K.voices.map((v) => `<figure class="voice">${pic(v.media, 0, { alt: v.name, sizes: "120px" })}<div><blockquote>„${v.quote}“</blockquote><cite><b>${v.name}</b><br>${v.role}</cite></div></figure>`).join("")}</div>
   </div>
 </section>
 <section class="section section--mist">
   <div class="wrap">
-    <div class="head"><h2 class="h-1">In vier Schritten zu HEIM.</h2><p class="lead">Unkompliziert und persönlich.</p></div>
-    <ol class="steps">
+    <div class="head" data-reveal><h2 class="h-1">In vier Schritten zu HEIM.</h2><p class="lead">Unkompliziert und persönlich.</p></div>
+    <ol class="steps" data-stagger>
       <li><h3>Bewerben</h3><p>Über das Formular der Stelle oder per E-Mail an ${C.jobsMail}. Ein Anschreiben ist nicht nötig.</p></li>
       <li><h3>Rückmeldung</h3><p>Sie erhalten eine Eingangsbestätigung. Die zuständige Führungskraft sieht sich Ihre Unterlagen persönlich an.</p></li>
       <li><h3>Kennenlernen</h3><p>Im Gespräch in Göppingen oder Baindt, gerne auch direkt auf der Baustelle.</p></li>
@@ -597,7 +601,7 @@ jobs.forEach((j) => {
     ${applicationForm(j.title, "bw")}
   </div>
 </section>
-${more.length ? `<section class="section"><div class="wrap"><div class="head"><h2 class="h-2">Ähnliche Stellen</h2></div><ul class="jobs">${more.map(jobRow).join("")}</ul></div></section>` : ""}`,
+${more.length ? `<section class="section"><div class="wrap"><div class="head" data-reveal><h2 class="h-2">Ähnliche Stellen</h2></div><ul class="jobs">${more.map(jobRow).join("")}</ul></div></section>` : ""}`,
   });
 });
 
@@ -682,13 +686,13 @@ pages["marke.html"] = page({
   </div>
 </div></section>
 <section class="section section--mist"><div class="wrap">
-  <div class="head"><h2 class="h-1">Logo</h2><p class="lead">Bildmarke und Wortmarke in Geist. Um das Logo bleibt mindestens die Breite eines Pfeilers frei. Mindestgröße horizontal: 28 mm im Druck, 120 px am Bildschirm.</p></div>
+  <div class="head" data-reveal><h2 class="h-1">Logo</h2><p class="lead">Bildmarke und Wortmarke in Geist. Um das Logo bleibt mindestens die Breite eines Pfeilers frei. Mindestgröße horizontal: 28 mm im Druck, 120 px am Bildschirm.</p></div>
   <div class="logo-grid">${brandFiles.map(([f, n, t, st]) => `<div class="logo-tile"><div class="stage ${st}" style="${st ? "" : "background:#fff"}"><img src="assets/brand/${f}" alt="${n}" loading="lazy"></div><p><b>${n}</b><br>${t}</p><a href="assets/brand/${f}" download>SVG herunterladen</a></div>`).join("")}</div>
 </div></section>
 <section class="section"><div class="wrap">
-  <div class="head"><h2 class="h-1">Farben</h2><p class="lead">Weiß trägt die Marke. HEIM-Türkis stammt von unseren Fahrzeugen und Maschinen und markiert, was zählt. Anthrazit ist die Farbe der Schrift.</p></div>
+  <div class="head" data-reveal><h2 class="h-1">Farben</h2><p class="lead">Weiß trägt die Marke. HEIM-Türkis stammt von unseren Fahrzeugen und Maschinen und markiert, was zählt. Anthrazit ist die Farbe der Schrift.</p></div>
   <div class="swatches">
-    ${[["HEIM-Türkis", "#00a383", "RGB 0 163 131<br>Flächen, Marke, Buttons"], ["Türkis dunkel", "#00785f", "RGB 0 120 95<br>Text und Links auf Weiß"], ["Anthrazit", "#1b2422", "RGB 27 36 34<br>Schrift, Bildmarke"], ["Nebel", "#f2f5f4", "RGB 242 245 244<br>Flächen, Hintergründe"], ["Weiß", "#ffffff", "RGB 255 255 255<br>Grundfläche"]].map(([n, h, t]) => `<div class="swatch"><i style="background:${h}"></i><b>${n}</b><span>${h.toUpperCase()}<br>${t}</span></div>`).join("")}
+    ${[["HEIM-Türkis", "#00a383", "RGB 0 163 131<br>Marke, Flächen, große Schrift"], ["Türkis dunkel", "#00785f", "RGB 0 120 95<br>Buttons, Text und Links"], ["Anthrazit", "#1b2422", "RGB 27 36 34<br>Schrift, Bildmarke"], ["Nebel", "#f2f5f4", "RGB 242 245 244<br>Flächen, Hintergründe"], ["Weiß", "#ffffff", "RGB 255 255 255<br>Grundfläche"]].map(([n, h, t]) => `<div class="swatch"><i style="background:${h}"></i><b>${n}</b><span>${h.toUpperCase()}<br>${t}</span></div>`).join("")}
   </div>
 </div></section>
 <section class="section section--mist"><div class="wrap split">

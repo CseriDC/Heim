@@ -10,7 +10,7 @@ Framework, ohne Cookies und ohne Drittanbieter: Schriften, Bilder und Video lieg
 | Bildmarke | Zwei Pfeiler unter einer 30°-Dachlinie, verbunden durch ein Band (Weiterentwicklung des bisherigen Zeichens) |
 | Wortmarke | HEIM in Geist Bold, Deskriptor INFRASTRUKTURBAU in Geist SemiBold, auf Wortbreite gesperrt |
 | HEIM-Türkis | `#00A383`, gemessen an Transportern, LKW und Baggern der Flotte (Farbton ca. 167°) |
-| Türkis dunkel | `#00785F` für Text und Links auf Weiß (Kontrast ≥ 5:1) |
+| Türkis dunkel | `#00785F` für Buttons, Text und Links (Kontrast 5,4:1; weiß auf HEIM-Türkis erreicht nur 3,2:1) |
 | Anthrazit | `#1B2422` Schrift und Bildmarke |
 | Schrift | Geist (Text und Überschriften), Geist Mono (nur Maße, Daten, Jahreszahlen) |
 | Bildsprache | Echte Projektfotos; Aufmacher mit „Dachkante“ (30°-Schnitt oben rechts) |

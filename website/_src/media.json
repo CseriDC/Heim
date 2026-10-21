@@ -108,7 +108,8 @@
   {
    "src": "assets/img/p/glasfaser-harthausen-1",
    "w": 1800,
-   "h": 3200
+   "h": 3200,
+   "sm": 900
   },
   {
    "src": "assets/img/p/glasfaser-harthausen-2",
@@ -397,7 +398,8 @@
   {
    "src": "assets/img/p/schlossplatz-1",
    "w": 1800,
-   "h": 896
+   "h": 896,
+   "sm": 900
   },
   {
    "src": "assets/img/p/schlossplatz-2",
@@ -571,14 +573,16 @@
   {
    "src": "assets/img/s/strassenbau-1",
    "w": 1800,
-   "h": 896
+   "h": 896,
+   "sm": 900
   }
  ],
  "s/netzbau": [
   {
    "src": "assets/img/s/netzbau-1",
    "w": 1800,
-   "h": 656
+   "h": 656,
+   "sm": 900
   }
  ],
  "s/laermschutz": [
@@ -612,7 +616,8 @@
   {
    "src": "assets/img/s/schluesselfertigbau-1",
    "w": 1800,
-   "h": 897
+   "h": 897,
+   "sm": 900
   }
  ],
  "s/hochbau": [
@@ -626,12 +631,14 @@
   {
    "src": "assets/img/s/markierung-1",
    "w": 1800,
-   "h": 1350
+   "h": 1350,
+   "sm": 900
   },
   {
    "src": "assets/img/s/markierung-2",
    "w": 1280,
-   "h": 960
+   "h": 960,
+   "sm": 900
   },
   {
    "src": "assets/img/s/markierung-3",
@@ -641,7 +648,8 @@
   {
    "src": "assets/img/s/markierung-4",
    "w": 1800,
-   "h": 1350
+   "h": 1350,
+   "sm": 900
   },
   {
    "src": "assets/img/s/markierung-5",
@@ -651,40 +659,46 @@
   {
    "src": "assets/img/s/markierung-6",
    "w": 1536,
-   "h": 2048
+   "h": 2048,
+   "sm": 900
   }
  ],
  "s/baudienstleistungen": [
   {
    "src": "assets/img/s/baudienstleistungen-1",
    "w": 1800,
-   "h": 677
+   "h": 677,
+   "sm": 900
   }
  ],
  "s/niederlassung-sued": [
   {
    "src": "assets/img/s/niederlassung-sued-1",
    "w": 1800,
-   "h": 1200
+   "h": 1200,
+   "sm": 900
   },
   {
    "src": "assets/img/s/niederlassung-sued-2",
    "w": 1800,
-   "h": 857
+   "h": 857,
+   "sm": 900
   }
  ],
  "c/familie": [
   {
    "src": "assets/img/c/familie-1",
    "w": 1800,
-   "h": 677
+   "h": 677,
+   "sm": 900
   }
  ],
  "c/geraetefamilie": [
   {
    "src": "assets/img/c/geraetefamilie-1",
    "w": 1800,
-   "h": 677
+   "h": 677,
+   "sm": 900
   }
  ],
  "c/geschaeftsleitung": [
@@ -698,14 +712,16 @@
   {
    "src": "assets/img/c/team-sued-1",
    "w": 1800,
-   "h": 1200
+   "h": 1200,
+   "sm": 900
   }
  ],
  "c/azubis": [
   {
    "src": "assets/img/c/azubis-1",
    "w": 1800,
-   "h": 671
+   "h": 671,
+   "sm": 900
   },
   {
    "src": "assets/img/c/azubis-2",
@@ -731,7 +747,8 @@
   {
    "src": "assets/img/c/zentrale-1",
    "w": 1800,
-   "h": 857
+   "h": 857,
+   "sm": 900
   }
  ],
  "g/bagger": [

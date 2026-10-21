@@ -14,8 +14,9 @@
       var open = burger.getAttribute("aria-expanded") !== "true";
       burger.setAttribute("aria-expanded", String(open));
       burger.setAttribute("aria-label", open ? "Menü schließen" : "Menü öffnen");
-      mobileNav.hidden = !open;
       document.body.classList.toggle("nav-open", open);
+      if (open) { mobileNav.hidden = false; requestAnimationFrame(function () { mobileNav.classList.add("is-open"); }); }
+      else { mobileNav.classList.remove("is-open"); setTimeout(function () { if (!mobileNav.classList.contains("is-open")) mobileNav.hidden = true; }, 300); }
     });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !mobileNav.hidden) burger.click(); });
   }
@@ -112,6 +113,22 @@
         .finally(function () { if (btn) btn.disabled = false; });
     });
   });
+
+  // Scroll reveal: once, when entering the viewport; staggered for lists. Content above the fold stays untouched.
+  var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduced && "IntersectionObserver" in window) {
+    var targets = [];
+    document.querySelectorAll("[data-reveal]").forEach(function (el) { targets.push(el); });
+    document.querySelectorAll("[data-stagger]").forEach(function (list) {
+      Array.prototype.forEach.call(list.children, function (el, i) { el.style.setProperty("--i", String(i % 6)); targets.push(el); });
+    });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("is-in"); io.unobserve(en.target); } });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
+    targets.forEach(function (el) {
+      if (el.getBoundingClientRect().top > window.innerHeight) { el.classList.add("will-reveal"); io.observe(el); }
+    });
+  }
 
   var y = document.querySelector("[data-year]");
   if (y) y.textContent = String(new Date().getFullYear());
