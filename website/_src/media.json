@@ -1,0 +1,777 @@
+{
+ "p/windpark": [
+  {
+   "src": "assets/img/p/windpark-1",
+   "w": 1000,
+   "h": 667
+  },
+  {
+   "src": "assets/img/p/windpark-2",
+   "w": 1000,
+   "h": 750
+  },
+  {
+   "src": "assets/img/p/windpark-3",
+   "w": 667,
+   "h": 1000
+  }
+ ],
+ "p/mcdonalds-merklingen": [
+  {
+   "src": "assets/img/p/mcdonalds-merklingen-1",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/mcdonalds-merklingen-2",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/mcdonalds-merklingen-3",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/mcdonalds-merklingen-4",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/mcdonalds-merklingen-5",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/mcdonalds-merklingen-6",
+   "w": 900,
+   "h": 600
+  }
+ ],
+ "p/laermschutz-renningen": [
+  {
+   "src": "assets/img/p/laermschutz-renningen-1",
+   "w": 1000,
+   "h": 750
+  },
+  {
+   "src": "assets/img/p/laermschutz-renningen-2",
+   "w": 1000,
+   "h": 750
+  },
+  {
+   "src": "assets/img/p/laermschutz-renningen-3",
+   "w": 750,
+   "h": 1000
+  },
+  {
+   "src": "assets/img/p/laermschutz-renningen-4",
+   "w": 1000,
+   "h": 750
+  }
+ ],
+ "p/norma-augsburg": [
+  {
+   "src": "assets/img/p/norma-augsburg-1",
+   "w": 1000,
+   "h": 750
+  },
+  {
+   "src": "assets/img/p/norma-augsburg-2",
+   "w": 750,
+   "h": 1000
+  },
+  {
+   "src": "assets/img/p/norma-augsburg-3",
+   "w": 750,
+   "h": 1000
+  }
+ ],
+ "p/chalet-kirchberg": [
+  {
+   "src": "assets/img/p/chalet-kirchberg-1",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/chalet-kirchberg-2",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/chalet-kirchberg-3",
+   "w": 900,
+   "h": 600
+  }
+ ],
+ "p/glasfaser-harthausen": [
+  {
+   "src": "assets/img/p/glasfaser-harthausen-1",
+   "w": 1800,
+   "h": 3200
+  },
+  {
+   "src": "assets/img/p/glasfaser-harthausen-2",
+   "w": 650,
+   "h": 434
+  },
+  {
+   "src": "assets/img/p/glasfaser-harthausen-3",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/glasfaser-harthausen-4",
+   "w": 899,
+   "h": 599
+  }
+ ],
+ "p/laermschutz-a8": [
+  {
+   "src": "assets/img/p/laermschutz-a8-1",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/laermschutz-a8-2",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/laermschutz-a8-3",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/laermschutz-a8-4",
+   "w": 900,
+   "h": 600
+  }
+ ],
+ "p/laermschutz-a81-engelberg": [
+  {
+   "src": "assets/img/p/laermschutz-a81-engelberg-1",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/laermschutz-a81-engelberg-2",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/laermschutz-a81-engelberg-3",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/laermschutz-a81-engelberg-4",
+   "w": 900,
+   "h": 600
+  }
+ ],
+ "p/getraenkemarkt-bobingen": [
+  {
+   "src": "assets/img/p/getraenkemarkt-bobingen-1",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/getraenkemarkt-bobingen-2",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/getraenkemarkt-bobingen-3",
+   "w": 900,
+   "h": 599
+  },
+  {
+   "src": "assets/img/p/getraenkemarkt-bobingen-4",
+   "w": 900,
+   "h": 600
+  }
+ ],
+ "p/innovationswerkstatt": [
+  {
+   "src": "assets/img/p/innovationswerkstatt-1",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/innovationswerkstatt-2",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/innovationswerkstatt-3",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/innovationswerkstatt-4",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/innovationswerkstatt-5",
+   "w": 900,
+   "h": 600
+  }
+ ],
+ "p/kfc-goeppingen": [
+  {
+   "src": "assets/img/p/kfc-goeppingen-1",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/kfc-goeppingen-2",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/kfc-goeppingen-3",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/kfc-goeppingen-4",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/kfc-goeppingen-5",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/kfc-goeppingen-6",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/kfc-goeppingen-7",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/kfc-goeppingen-8",
+   "w": 900,
+   "h": 600
+  }
+ ],
+ "p/lagerhalle": [
+  {
+   "src": "assets/img/p/lagerhalle-1",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/lagerhalle-2",
+   "w": 900,
+   "h": 600
+  }
+ ],
+ "p/mcdonalds-bad-urach": [
+  {
+   "src": "assets/img/p/mcdonalds-bad-urach-1",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/mcdonalds-bad-urach-2",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/mcdonalds-bad-urach-3",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/mcdonalds-bad-urach-4",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/mcdonalds-bad-urach-5",
+   "w": 900,
+   "h": 600
+  }
+ ],
+ "p/mcdonalds-illertissen": [
+  {
+   "src": "assets/img/p/mcdonalds-illertissen-1",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/mcdonalds-illertissen-2",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/mcdonalds-illertissen-3",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/mcdonalds-illertissen-4",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/mcdonalds-illertissen-5",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/mcdonalds-illertissen-6",
+   "w": 900,
+   "h": 600
+  }
+ ],
+ "p/mcdonalds-kiefersfelden": [
+  {
+   "src": "assets/img/p/mcdonalds-kiefersfelden-1",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/mcdonalds-kiefersfelden-2",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/mcdonalds-kiefersfelden-3",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/mcdonalds-kiefersfelden-4",
+   "w": 900,
+   "h": 600
+  }
+ ],
+ "p/kisslegg": [
+  {
+   "src": "assets/img/p/kisslegg-1",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/kisslegg-2",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/kisslegg-3",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/kisslegg-4",
+   "w": 900,
+   "h": 600
+  }
+ ],
+ "p/rueckbau-b10": [
+  {
+   "src": "assets/img/p/rueckbau-b10-1",
+   "w": 1000,
+   "h": 750
+  },
+  {
+   "src": "assets/img/p/rueckbau-b10-2",
+   "w": 1000,
+   "h": 750
+  },
+  {
+   "src": "assets/img/p/rueckbau-b10-3",
+   "w": 750,
+   "h": 1000
+  }
+ ],
+ "p/schlossplatz": [
+  {
+   "src": "assets/img/p/schlossplatz-1",
+   "w": 1800,
+   "h": 896
+  },
+  {
+   "src": "assets/img/p/schlossplatz-2",
+   "w": 1000,
+   "h": 750
+  },
+  {
+   "src": "assets/img/p/schlossplatz-3",
+   "w": 750,
+   "h": 496
+  },
+  {
+   "src": "assets/img/p/schlossplatz-4",
+   "w": 614,
+   "h": 656
+  }
+ ],
+ "p/achberg": [
+  {
+   "src": "assets/img/p/achberg-1",
+   "w": 900,
+   "h": 497
+  },
+  {
+   "src": "assets/img/p/achberg-2",
+   "w": 900,
+   "h": 499
+  },
+  {
+   "src": "assets/img/p/achberg-3",
+   "w": 900,
+   "h": 502
+  },
+  {
+   "src": "assets/img/p/achberg-4",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/achberg-5",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/achberg-6",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/achberg-7",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/achberg-8",
+   "w": 900,
+   "h": 600
+  }
+ ],
+ "p/wolfegg": [
+  {
+   "src": "assets/img/p/wolfegg-1",
+   "w": 900,
+   "h": 675
+  },
+  {
+   "src": "assets/img/p/wolfegg-2",
+   "w": 900,
+   "h": 675
+  },
+  {
+   "src": "assets/img/p/wolfegg-3",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/wolfegg-4",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/wolfegg-5",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/wolfegg-6",
+   "w": 900,
+   "h": 600
+  }
+ ],
+ "p/kaufland-steinheim": [
+  {
+   "src": "assets/img/p/kaufland-steinheim-1",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/kaufland-steinheim-2",
+   "w": 900,
+   "h": 600
+  }
+ ],
+ "p/gartencenter-goeppingen": [
+  {
+   "src": "assets/img/p/gartencenter-goeppingen-1",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/gartencenter-goeppingen-2",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/gartencenter-goeppingen-3",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/gartencenter-goeppingen-4",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/gartencenter-goeppingen-5",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/gartencenter-goeppingen-6",
+   "w": 900,
+   "h": 600
+  }
+ ],
+ "p/windata-wangen": [
+  {
+   "src": "assets/img/p/windata-wangen-1",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/windata-wangen-2",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/windata-wangen-3",
+   "w": 900,
+   "h": 600
+  }
+ ],
+ "p/laermschutz-8m": [
+  {
+   "src": "assets/img/p/laermschutz-8m-1",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/laermschutz-8m-2",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/p/laermschutz-8m-3",
+   "w": 900,
+   "h": 600
+  }
+ ],
+ "s/strassenbau": [
+  {
+   "src": "assets/img/s/strassenbau-1",
+   "w": 1800,
+   "h": 896
+  }
+ ],
+ "s/netzbau": [
+  {
+   "src": "assets/img/s/netzbau-1",
+   "w": 1800,
+   "h": 656
+  }
+ ],
+ "s/laermschutz": [
+  {
+   "src": "assets/img/s/laermschutz-1",
+   "w": 900,
+   "h": 600
+  },
+  {
+   "src": "assets/img/s/laermschutz-2",
+   "w": 330,
+   "h": 350
+  },
+  {
+   "src": "assets/img/s/laermschutz-3",
+   "w": 700,
+   "h": 350
+  },
+  {
+   "src": "assets/img/s/laermschutz-4",
+   "w": 700,
+   "h": 350
+  },
+  {
+   "src": "assets/img/s/laermschutz-5",
+   "w": 330,
+   "h": 350
+  }
+ ],
+ "s/schluesselfertigbau": [
+  {
+   "src": "assets/img/s/schluesselfertigbau-1",
+   "w": 1800,
+   "h": 897
+  }
+ ],
+ "s/hochbau": [
+  {
+   "src": "assets/img/s/hochbau-1",
+   "w": 900,
+   "h": 600
+  }
+ ],
+ "s/markierung": [
+  {
+   "src": "assets/img/s/markierung-1",
+   "w": 1800,
+   "h": 1350
+  },
+  {
+   "src": "assets/img/s/markierung-2",
+   "w": 1280,
+   "h": 960
+  },
+  {
+   "src": "assets/img/s/markierung-3",
+   "w": 1000,
+   "h": 750
+  },
+  {
+   "src": "assets/img/s/markierung-4",
+   "w": 1800,
+   "h": 1350
+  },
+  {
+   "src": "assets/img/s/markierung-5",
+   "w": 1000,
+   "h": 750
+  },
+  {
+   "src": "assets/img/s/markierung-6",
+   "w": 1536,
+   "h": 2048
+  }
+ ],
+ "s/baudienstleistungen": [
+  {
+   "src": "assets/img/s/baudienstleistungen-1",
+   "w": 1800,
+   "h": 677
+  }
+ ],
+ "s/niederlassung-sued": [
+  {
+   "src": "assets/img/s/niederlassung-sued-1",
+   "w": 1800,
+   "h": 1200
+  },
+  {
+   "src": "assets/img/s/niederlassung-sued-2",
+   "w": 1800,
+   "h": 857
+  }
+ ],
+ "c/familie": [
+  {
+   "src": "assets/img/c/familie-1",
+   "w": 1800,
+   "h": 677
+  }
+ ],
+ "c/geraetefamilie": [
+  {
+   "src": "assets/img/c/geraetefamilie-1",
+   "w": 1800,
+   "h": 677
+  }
+ ],
+ "c/geschaeftsleitung": [
+  {
+   "src": "assets/img/c/geschaeftsleitung-1",
+   "w": 566,
+   "h": 512
+  }
+ ],
+ "c/team-sued": [
+  {
+   "src": "assets/img/c/team-sued-1",
+   "w": 1800,
+   "h": 1200
+  }
+ ],
+ "c/azubis": [
+  {
+   "src": "assets/img/c/azubis-1",
+   "w": 1800,
+   "h": 671
+  },
+  {
+   "src": "assets/img/c/azubis-2",
+   "w": 900,
+   "h": 600
+  }
+ ],
+ "c/lisa-weber": [
+  {
+   "src": "assets/img/c/lisa-weber-1",
+   "w": 228,
+   "h": 275
+  }
+ ],
+ "c/ellen-bittlingmaier": [
+  {
+   "src": "assets/img/c/ellen-bittlingmaier-1",
+   "w": 400,
+   "h": 482
+  }
+ ],
+ "c/zentrale": [
+  {
+   "src": "assets/img/c/zentrale-1",
+   "w": 1800,
+   "h": 857
+  }
+ ],
+ "g/bagger": [
+  {
+   "src": "assets/img/g/bagger",
+   "w": 1000,
+   "h": 783,
+   "alpha": true
+  }
+ ],
+ "g/vito": [
+  {
+   "src": "assets/img/g/vito",
+   "w": 970,
+   "h": 621,
+   "alpha": true
+  }
+ ],
+ "g/lkw": [
+  {
+   "src": "assets/img/g/lkw",
+   "w": 785,
+   "h": 496,
+   "alpha": true
+  }
+ ],
+ "g/transporter": [
+  {
+   "src": "assets/img/g/transporter",
+   "w": 780,
+   "h": 325,
+   "alpha": true
+  }
+ ],
+ "g/flotte": [
+  {
+   "src": "assets/img/g/flotte",
+   "w": 1400,
+   "h": 469,
+   "alpha": true
+  }
+ ]
+}

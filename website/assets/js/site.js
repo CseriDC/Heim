@@ -1,12 +1,8 @@
 (function () {
   "use strict";
 
-  // Header: transparent over the dark hero, solid once the page scrolls
   var header = document.querySelector("[data-header]");
-  function onScroll() {
-    if (!header) return;
-    header.classList.toggle("is-solid", window.scrollY > 24 && !document.body.classList.contains("nav-open"));
-  }
+  function onScroll() { if (header) header.classList.toggle("is-scrolled", window.scrollY > 8); }
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
@@ -17,82 +13,102 @@
     burger.addEventListener("click", function () {
       var open = burger.getAttribute("aria-expanded") !== "true";
       burger.setAttribute("aria-expanded", String(open));
+      burger.setAttribute("aria-label", open ? "Menü schließen" : "Menü öffnen");
       mobileNav.hidden = !open;
       document.body.classList.toggle("nav-open", open);
-      onScroll();
     });
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && !mobileNav.hidden) burger.click();
-    });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !mobileNav.hidden) burger.click(); });
   }
 
-  // Filter chips (projects, jobs) + free-text job search
+  // Hero film: autoplay only without reduced-motion preference, always pausable
+  var film = document.querySelector("[data-film]");
+  var toggle = document.querySelector("[data-film-toggle]");
+  if (film) {
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var setState = function (playing) {
+      if (!toggle) return;
+      toggle.setAttribute("aria-label", playing ? "Film anhalten" : "Film abspielen");
+      toggle.querySelector("[data-icon-pause]").hidden = !playing;
+      toggle.querySelector("[data-icon-play]").hidden = playing;
+    };
+    if (!reduce) { var p = film.play(); if (p && p.catch) p.catch(function () { setState(false); }); }
+    setState(!reduce);
+    film.addEventListener("play", function () { setState(true); });
+    film.addEventListener("pause", function () { setState(false); });
+    if (toggle) toggle.addEventListener("click", function () { if (film.paused) film.play(); else film.pause(); });
+  }
+
+  // Filters (projects, jobs) and free-text job search
   document.querySelectorAll("[data-filter-group]").forEach(function (group) {
     var target = document.querySelector(group.getAttribute("data-filter-group"));
     if (!target) return;
     var items = Array.prototype.slice.call(target.querySelectorAll("[data-cat]"));
-    var search = document.querySelector(group.getAttribute("data-search") || "#__none");
-    var empty = target.parentNode.querySelector("[data-empty]");
+    var search = group.getAttribute("data-search") ? document.querySelector(group.getAttribute("data-search")) : null;
+    var empty = document.querySelector(group.getAttribute("data-empty") || "#__none");
     var active = "alle";
-
     function apply() {
       var q = search ? search.value.trim().toLowerCase() : "";
       var shown = 0;
       items.forEach(function (el) {
-        var cats = el.getAttribute("data-cat").split(" ");
-        var okCat = active === "alle" || cats.indexOf(active) !== -1;
-        var okText = !q || el.textContent.toLowerCase().indexOf(q) !== -1;
-        el.hidden = !(okCat && okText);
-        if (!el.hidden) shown++;
+        var ok = (active === "alle" || el.getAttribute("data-cat").split(" ").indexOf(active) !== -1) && (!q || el.textContent.toLowerCase().indexOf(q) !== -1);
+        el.hidden = !ok;
+        if (ok) shown++;
       });
       if (empty) empty.hidden = shown !== 0;
     }
-
     group.querySelectorAll("[data-filter]").forEach(function (chip) {
       chip.addEventListener("click", function () {
         active = chip.getAttribute("data-filter");
-        group.querySelectorAll("[data-filter]").forEach(function (c) {
-          c.setAttribute("aria-pressed", String(c === chip));
-        });
+        group.querySelectorAll("[data-filter]").forEach(function (c) { c.setAttribute("aria-pressed", String(c === chip)); });
         apply();
       });
     });
     if (search) search.addEventListener("input", apply);
-
-    // Preselect via #anchor (e.g. karriere.html#technik)
     function fromHash() {
-      var hash = (location.hash || "").replace("#", "");
-      var pre = hash && group.querySelector('[data-filter="' + hash + '"]');
-      if (pre) pre.click();
+      var h = (location.hash || "").replace("#", "");
+      var chip = h && group.querySelector('[data-filter="' + h + '"]');
+      if (chip) chip.click();
     }
     window.addEventListener("hashchange", fromHash);
     fromHash();
   });
 
-  // Forms: post to data-endpoint when configured, otherwise explain the e-mail route
+  // Gallery lightbox
+  var box = document.querySelector("[data-lightbox]");
+  var shots = Array.prototype.slice.call(document.querySelectorAll("[data-shot]"));
+  if (box && shots.length && box.showModal) {
+    var img = box.querySelector("img");
+    var count = box.querySelector("[data-lb-count]");
+    var i = 0;
+    var show = function (n) {
+      i = (n + shots.length) % shots.length;
+      img.src = shots[i].getAttribute("data-shot");
+      img.alt = shots[i].querySelector("img").alt;
+      count.textContent = (i + 1) + " / " + shots.length;
+    };
+    shots.forEach(function (b, n) { b.addEventListener("click", function () { show(n); box.showModal(); }); });
+    box.querySelector("[data-lb-close]").addEventListener("click", function () { box.close(); });
+    box.querySelector("[data-lb-prev]").addEventListener("click", function () { show(i - 1); });
+    box.querySelector("[data-lb-next]").addEventListener("click", function () { show(i + 1); });
+    box.addEventListener("click", function (e) { if (e.target === box || e.target.classList.contains("lightbox-inner")) box.close(); });
+    box.addEventListener("keydown", function (e) { if (e.key === "ArrowLeft") show(i - 1); if (e.key === "ArrowRight") show(i + 1); });
+  }
+
+  // Forms: post to data-endpoint when configured, otherwise name the e-mail route
   document.querySelectorAll("form[data-form]").forEach(function (form) {
     var note = form.querySelector("[data-form-note]");
+    function show(msg) { if (note) { note.textContent = msg; note.hidden = false; } }
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (!form.reportValidity()) return;
       var endpoint = form.getAttribute("data-endpoint");
       var mail = form.getAttribute("data-mail");
-      function show(msg) { if (note) { note.textContent = msg; note.hidden = false; } }
-      if (!endpoint) {
-        show("Vielen Dank. Der Online-Versand wird gerade eingerichtet. Bitte senden Sie Ihre Nachricht bis dahin direkt an " + mail + ".");
-        return;
-      }
+      if (!endpoint) { show("Danke. Der Online-Versand wird gerade eingerichtet. Bitte senden Sie Ihre Nachricht bis dahin an " + mail + "."); return; }
       var btn = form.querySelector('[type="submit"]');
       if (btn) btn.disabled = true;
       fetch(endpoint, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
-        .then(function (r) {
-          if (!r.ok) throw new Error(String(r.status));
-          form.reset();
-          show("Vielen Dank. Ihre Nachricht ist bei uns eingegangen, wir melden uns zeitnah bei Ihnen.");
-        })
-        .catch(function () {
-          show("Die Nachricht konnte nicht übermittelt werden. Bitte versuchen Sie es erneut oder schreiben Sie an " + mail + ".");
-        })
+        .then(function (r) { if (!r.ok) throw new Error(String(r.status)); form.reset(); show("Danke. Ihre Nachricht ist bei uns eingegangen. Wir melden uns persönlich bei Ihnen."); })
+        .catch(function () { show("Die Nachricht wurde nicht übertragen. Bitte versuchen Sie es erneut oder schreiben Sie an " + mail + "."); })
         .finally(function () { if (btn) btn.disabled = false; });
     });
   });

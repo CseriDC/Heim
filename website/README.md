@@ -1,70 +1,67 @@
-# heim-live.de – Relaunch
+# heim-live.de – Relaunch 2026
 
-Neue Unternehmenswebsite der HEIM Infrastrukturbau GmbH. Statisches HTML ohne Framework,
-ohne Cookies, ohne Tracking und ohne externe Server (Schriften sind lokal eingebunden, DSGVO-freundlich).
+Neue Website und neues Corporate Design der HEIM Infrastrukturbau GmbH. Statisches HTML ohne
+Framework, ohne Cookies und ohne Drittanbieter: Schriften, Bilder und Video liegen auf dem eigenen Server.
+
+## Marke
+
+| Element | Festlegung |
+| --- | --- |
+| Bildmarke | Zwei Pfeiler unter einer 30°-Dachlinie, verbunden durch ein Band (Weiterentwicklung des bisherigen Zeichens) |
+| Wortmarke | HEIM in Geist Bold, Deskriptor INFRASTRUKTURBAU in Geist SemiBold, auf Wortbreite gesperrt |
+| HEIM-Türkis | `#00A383`, gemessen an Transportern, LKW und Baggern der Flotte (Farbton ca. 167°) |
+| Türkis dunkel | `#00785F` für Text und Links auf Weiß (Kontrast ≥ 5:1) |
+| Anthrazit | `#1B2422` Schrift und Bildmarke |
+| Schrift | Geist (Text und Überschriften), Geist Mono (nur Maße, Daten, Jahreszahlen) |
+| Bildsprache | Echte Projektfotos; Aufmacher mit „Dachkante“ (30°-Schnitt oben rechts) |
+| Slogan | Mit Liebe ans Werk. |
+
+Alle Logodateien liegen in `assets/brand/` (horizontal, vertikal, Kurzform, Bildmarke, Icon, Favicon;
+jeweils farbig, weiß, einfarbig und negativ). Sie werden aus Vektorpfaden erzeugt:
+
+```bash
+node website/_src/logo.mjs   # benötigt die Dev-Abhängigkeiten geist und opentype.js (npm install)
+```
+
+Die Markenseite `marke.html` dokumentiert Logo, Farben, Schrift und Regeln und bietet die Dateien zum Download.
 
 ## Aufbau
 
 | Pfad | Inhalt |
 | --- | --- |
-| `_src/content.mjs` | **Alle Texte**: Firmendaten, Leistungen, Projekte, Historie, Benefits, Stellen, FAQ |
-| `_src/build.mjs` | Seitengenerator (Layout, Navigation, Seiten, JSON-LD, Sitemap) |
-| `_src/drawings.mjs` | Technische Schemazeichnungen (SVG) als Bildersatz |
-| `assets/css/site.css` | Gestaltung (Farben und Schriften als Tokens am Dateianfang) |
-| `assets/js/site.js` | Menü, Filter, Stellensuche, Formulare |
-| `assets/img/` | Logo als Vektor (`heim-logo.svg`, `heim-logo-white.svg`, `heim-mark.svg`, `heim-wordmark.svg`) |
-| `*.html` | Generierte Seiten (nicht von Hand bearbeiten) |
+| `_src/content.mjs` | **Alle Texte**: Firmendaten, Leistungen, 25 Projekte, Historie, Leitbild, 18 Stellen, FAQ |
+| `_src/build.mjs` | Seitengenerator (Layout, Navigation, 59 Seiten, JSON-LD inkl. JobPosting, Sitemap) |
+| `_src/logo.mjs` | Logo-Generator |
+| `_src/media.json` | Bildverzeichnis (Pfade und Maße, erzeugt beim Bildimport) |
+| `assets/css/site.css` | Gestaltung, Tokens am Dateianfang |
+| `assets/js/site.js` | Menü, Video-Steuerung, Filter, Stellensuche, Bildergalerie, Formulare |
+| `assets/img/` | Projektfotos (`p/`), Leistungsbilder (`s/`), Unternehmen (`c/`), freigestellte Fahrzeuge (`g/`), jeweils WebP + JPG/PNG |
+| `assets/video/` | Baustellenfilm Ursenwang-Nord (1600 px und 960 px, ohne Ton) + Standbild |
 
-Seiten neu erzeugen:
+Seiten neu erzeugen und lokal ansehen:
 
 ```bash
-cd website
-node _src/build.mjs
+npm run build:website
+npm run serve:website   # http://localhost:8000
 ```
 
-Lokal ansehen: `python3 -m http.server 8000` im Ordner `website/`, dann http://localhost:8000.
 Für den Upload den Ordner `website/` ohne `_src/` und `README.md` auf den Webspace kopieren.
 
-## Stellenanzeigen pflegen
+## Pflege
 
-Jede Stelle ist ein Eintrag in `jobs` in `_src/content.mjs` (Titel, Bereich, Standort, Rolle, Aufgaben,
-Profil, Angebot). Nach `node _src/build.mjs` entstehen automatisch Detailseite, Listeneintrag,
-Zähler und strukturierte Daten für Google for Jobs (`JobPosting`). Stelle besetzt: Eintrag löschen, neu bauen.
-
-Bereiche statt „Kaufleute“:
-- Baustelle & Gewerbe
-- Technik & Bauleitung
-- Finanzen, Einkauf & Verwaltung
-- Ausbildung & Studium
-
-## Fotos einsetzen
-
-Die Seite funktioniert ohne Fotos (Schemazeichnungen). Sobald Projektfotos vorliegen, einfach als JPG ablegen;
-der Generator verwendet sie automatisch statt der Zeichnung:
-
-- `assets/img/projekte/<projekt-slug>.jpg`, z. B. `laermschutz-a8-muehlhausen.jpg`, `schlossplatz-goeppingen.jpg`
-- `assets/img/leistungen/<leistungs-slug>.jpg`, z. B. `strassen-und-tiefbau.jpg`, `verkehrslaermschutz.jpg`
-
-Empfehlung: 2400 px Breite, Querformat 3:2, max. 400 KB (WebP/JPG, Qualität ~75).
-
-## Formulare
-
-Kontakt- und Bewerbungsformular senden an die URL im Attribut `data-endpoint` (in `_src/build.mjs`,
-Funktion `applicationForm` und Kontaktseite). Ist es leer, wird auf die E-Mail-Adresse verwiesen.
-Geeignet sind z. B. ein PHP-Mailer auf dem eigenen Webspace oder ein EU-gehosteter Formulardienst.
+- **Stelle neu oder besetzt:** Eintrag in `jobs` in `_src/content.mjs` anlegen oder löschen, neu bauen.
+- **Projekt neu:** Fotos als `assets/img/p/<name>-1.jpg/.webp` usw. ablegen, in `_src/media.json` eintragen, Projekt in `projects` ergänzen.
+- **Formulare:** Kontakt- und Bewerbungsformular senden an die URL in `data-endpoint` (in `_src/build.mjs`). Leer = Hinweis auf die E-Mail-Adresse.
 
 ## Vor dem Livegang prüfen
 
-Die Inhalte stammen aus der bisherigen Website, öffentlichen Stellenanzeigen und Presseberichten.
-Bitte fachlich bestätigen:
+Texte und Zahlen stammen von der bisherigen Website (Stand Oktober 2026). Bitte bestätigen:
 
-- [ ] **Hausnummer Baindt**: Kontaktseite alt „Am Föhrenried 13“, Impressum alt „Am Föhrenried 12“ (aktuell: 13)
-- [ ] **Kennzahlen**: 110+ Mitarbeitende (Stand 2023: 112), 40+ Jahre Lärmschutz, Wurzeln 1750, 10+ Generationen
-- [ ] **Historie**: Jahreszahlen 1927, 1959, 1995, 2014, 2021 (Niederlassung Süd), 2023 (WIN-Charta)
-- [ ] **Inhaber/Geschäftsführung**: Dietmar Heim (Inhaber), Jan-Philip Heim und Tobias Jachmann (Geschäftsführer)
-- [ ] **HUS Umwelttechnik + Service**: Bezeichnung und Beziehung (Partner-/Schwesterunternehmen), ggf. Link
-- [ ] **Projektdaten**: Zahlen der Referenzen (A8, Kiefersfelden, Bad Urach) und Freigabe der Auftraggebernamen
-- [ ] **Stellen**: Welche der 16 Stellen sind aktuell offen? Benefits (Akademie, bAV, Dienstrad, Fitness, Prämien) bestätigen
-- [ ] **Impressum**: USt-ID ergänzen, Verantwortlicher nach § 18 MStV
-- [ ] **Datenschutz**: Entwurf durch Datenschutzbeauftragten prüfen lassen, Hosting-Anbieter eintragen
-- [ ] **Domain**: `baseUrl` in `_src/content.mjs` (Canonical, Sitemap, strukturierte Daten)
+- [ ] **Bildrechte:** Projektfotos, Video und Porträts sind von heim-live.de übernommen. Fotografen-Credits (z. B. KFC: Tobias Fröhner Photography) und Freigaben prüfen, Personenfotos (Azubis, Familie, Teams) mit Einverständnis
+- [ ] **Hausnummer Baindt:** Kontaktseite alt „Am Föhrenried 13“, Impressum alt „12“ (verwendet: 13)
+- [ ] **Kennzahlen:** über 110 Mitarbeitende, fast 250 Jahre im Baugewerbe, über 10 Generationen
+- [ ] **Geschäftsführung:** Andreas Oder steht im alten Impressum als Geschäftsführer, im Kontakt nicht
+- [ ] **Stellen:** 18 Stellen von der alten Seite; Formulierungen der Angebote bei Ausbildung und Studium teils ergänzt
+- [ ] **Bewerbungsadresse:** aktuell info@heim-hus.de, ggf. eigene Karriere-Adresse
+- [ ] **Datenschutz:** Entwurf prüfen lassen, Hosting-Anbieter eintragen
+- [ ] **Reusch-Projekt:** Angaben aus Presseberichten, noch ohne eigene Fotos
