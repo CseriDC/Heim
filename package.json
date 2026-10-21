@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build:website": "node website/_src/build.mjs",
+    "serve:website": "python3 -m http.server 8000 --directory website",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

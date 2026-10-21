@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://heim-live.de/sitemap.xml
